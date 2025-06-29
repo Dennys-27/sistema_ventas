@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 
 class Proveedores extends Controller
@@ -23,6 +24,9 @@ class Proveedores extends Controller
     public function create()
     {
         //
+
+        $titulo = 'Crear Proveedor';
+        return view('modules.proveedores.create', compact('titulo'));
     }
 
     /**
@@ -31,6 +35,21 @@ class Proveedores extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            $item = new Proveedor();
+            $item->nombre = $request->input('nombre');
+            $item->telefono = $request->input('telefono');
+            $item->postal = $request->input('postal');
+            $item->email = $request->input('email');
+            
+            $item->sitioweb = $request->input('sitioweb');
+            $item->notas = $request->input('notas');
+            $item->save();
+
+            return redirect()->route('proveedores')->with('success', 'Proveedor creado exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Error al crear el proveedor: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -39,6 +58,9 @@ class Proveedores extends Controller
     public function show(string $id)
     {
         //
+        $proveedor = Proveedor::findOrFail($id);
+        $titulo = 'Proveedor: ' . $proveedor->nombre;
+        return view('modules.proveedores.show', compact('titulo', 'proveedor'));
     }
 
     /**
@@ -47,6 +69,9 @@ class Proveedores extends Controller
     public function edit(string $id)
     {
         //
+        $proveedor = Proveedor::findOrFail($id);
+        $titulo = 'Proveedor: ' . $proveedor->nombre;
+        return view('modules.proveedores.edit', compact('titulo', 'proveedor'));
     }
 
     /**
@@ -54,7 +79,21 @@ class Proveedores extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //}
+        try {
+            $item = Proveedor::findOrFail($id);
+            $item->nombre = $request->input('nombre');
+            $item->telefono = $request->input('telefono');
+            $item->postal = $request->input('postal');
+            $item->email = $request->input('email');
+            $item->sitioweb = $request->input('sitioweb');
+            $item->notas = $request->input('notas');
+            $item->save();
+
+            return redirect()->route('proveedores')->with('success', 'Proveedor actualizado exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Error al actualizar el proveedor: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -63,5 +102,12 @@ class Proveedores extends Controller
     public function destroy(string $id)
     {
         //
+        try {
+            $item = Proveedor::findOrFail($id);
+            $item->delete();
+            return redirect()->route('proveedores')->with('success', 'Proveedor eliminado exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Error al eliminar el proveedor: ' . $e->getMessage()]);
+        }
     }
 }
