@@ -30,48 +30,52 @@
                                 <i class="fa-solid fa-circle-plus"></i> Agregar nueva proveedor
                             </a>
                             <hr>
-                            <!-- Table with stripped rows -->
-                            <table class="table table-border datatable">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Nombre</th>
-                                        <th class="text-center">telenofo</th>
-                                        <th class="text-center">Email</th>
-                                        <th class="text-center">Postal</th>
-                                        <th class="text-center">Sitio web</th>
-                                        <th class="text-center">Nota</th>
-                                        <th class="text-center">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center">
-                                    @foreach ($items as $item)
-                                        <tr>
-                                            <td>{{ $item->nombre }}</td>
-                                            <td>{{ $item->telefono }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->postal }}</td>
-                                            <td>{{ $item->sitioweb }}</td>
-                                            <td>{{ $item->notas }}</td>
+                            <div class="table-responsive">
+                                <table class="table table-border datatable">
+                                    <!-- Table with stripped rows -->
+                                    <table class="table table-border datatable">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Nombre</th>
+                                                <th class="text-center">telenofo</th>
+                                                <th class="text-center">Email</th>
+                                                <th class="text-center">Postal</th>
+                                                <th class="text-center">Sitio web</th>
+                                                <th class="text-center">Nota</th>
+                                                <th class="text-center">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            @foreach ($items as $item)
+                                                <tr>
+                                                    <td>{{ $item->nombre }}</td>
+                                                    <td>{{ $item->telefono }}</td>
+                                                    <td>{{ $item->email }}</td>
+                                                    <td>{{ $item->postal }}</td>
+                                                    <td>{{ $item->sitioweb }}</td>
+                                                    <td>{{ $item->notas }}</td>
 
-                                            <td><a href="{{ route('proveedores-edit', $item->id) }}"
-                                                    class="btn btn-warning btn-sm"><i
-                                                        class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="{{ route('proveedores-show', $item->id) }}"
-                                                    class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                    <td><a href="{{ route('proveedores-edit', $item->id) }}"
+                                                            class="btn btn-warning btn-sm"><i
+                                                                class="fa-solid fa-pen-to-square"></i></a>
+                                                        <a href="{{ route('proveedores-show', $item->id) }}"
+                                                            class="btn btn-danger btn-sm"><i
+                                                                class="fa-solid fa-trash-can"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
-                                    <!-- Puedes agregar más filas aquí dinámicamente -->
-                                </tbody>
-                            </table>
-                            <!-- End Table with stripped rows -->
-
-
+                                            <!-- Puedes agregar más filas aquí dinámicamente -->
+                                        </tbody>
+                                    </table>
+                                    <!-- End Table with stripped rows -->
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
+
+            </div>
             </div>
         </section>
 

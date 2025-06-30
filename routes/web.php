@@ -14,7 +14,7 @@ use App\Http\Controllers\Usuarios;
     return view('welcome');
 }); */
 //crear un usuario administrador
-//Route::get('/crear-admin', [AuthController::class, 'crearAdmin']);
+Route::get('/crear-admin', [AuthController::class, 'crearAdmin']);
 
 
 Route::middleware(['auth'])->group(function () {
