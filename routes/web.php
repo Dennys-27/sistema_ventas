@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ventas;
 use App\Http\Controllers\DetalleVentas;
 use App\Http\Controllers\Categorias;
+use App\Http\Controllers\Compras;
 use App\Http\Controllers\Productos;
 use App\Http\Controllers\Proveedores;
+use App\Http\Controllers\Reportes_productos;
 use App\Http\Controllers\Usuarios;
 
 /* Route::get('/', function () {
@@ -56,15 +58,18 @@ Route::post('/logear', [AuthController::class, 'logear'])->name('logear');
 
 
 
-
+/* Ventas */
 Route::prefix('ventas')->middleware('auth')->group(function () {
     Route::get('/nueva-venta', [Ventas::class, 'index'])->name('ventas-nueva');
 });
 
+/* Detalle Ventas */
 Route::prefix('detalle')->middleware('auth')->group(function () {
     Route::get('/detalle-venta', [DetalleVentas::class, 'index'])->name('detalle-venta');
 });
 
+
+/* Categorias */
 Route::prefix('categorias')->middleware('auth')->group(function () {
     Route::get('/', [Categorias::class, 'index'])->name('categorias');
     Route::get('/create', [Categorias::class, 'create'])->name('categorias-create');
@@ -76,13 +81,28 @@ Route::prefix('categorias')->middleware('auth')->group(function () {
 });
 
 
-
+/* Productos */
 Route::prefix('productos')->middleware('auth')->group(function () {
     Route::get('/', [Productos::class, 'index'])->name('productos');
-    
+    Route::get('/create', [Productos::class, 'create'])->name('productos-create');
+    Route::post('/store', [Productos::class, 'store'])->name('productos-store');
+    Route::get('/edit/{id}', [Productos::class, 'edit'])->name('productos-edit');
+    Route::put('/update/{id}', [Productos::class, 'update'])->name('productos-update');
+
+    Route::get('/show/{id}', [Productos::class, 'show'])->name('productos-show');
+    Route::delete('/destroy/{id}', [Productos::class, 'destroy'])->name('productos-destroy');
+
+    Route::get('/cambiar/{id}/{estado}', [Productos::class, 'cambiar'])->name('productos-cambiar');
+    Route::get('/tbody', [Productos::class, 'tbody'])->name('productos-tbody');
 });
 
+/* Reportes Productos */
+Route::prefix('reportes_productos')->middleware('auth')->group(function () {
+    Route::get('/', [Reportes_productos::class, 'index'])->name('reportes_productos');
+    Route::get('/falta-stock', [Reportes_productos::class, 'falta_stock'])->name('reportes_productos.falta_stock');
+});
 
+/* Proveedores */
 Route::prefix('proveedores')->middleware('auth')->group(function () {
     Route::get('/', [Proveedores::class, 'index'])->name('proveedores');
     Route::get('/edit/{id}', [Proveedores::class, 'edit'])->name('proveedores-edit');
@@ -93,6 +113,7 @@ Route::prefix('proveedores')->middleware('auth')->group(function () {
     Route::put('/update/{id}', [Proveedores::class, 'update'])->name('proveedores-update');
 });
 
+/* Reportes Usuarios */
 Route::prefix('usuarios')->middleware('auth')->group(function () {
     Route::get('/', [Usuarios::class, 'index'])->name('usuarios');
     Route::get('/create', [Usuarios::class, 'create'])->name('usuarios-create');
@@ -102,4 +123,13 @@ Route::prefix('usuarios')->middleware('auth')->group(function () {
     Route::get('/tbody', [Usuarios::class, 'tbody'])->name('usuarios-tbody');
     Route::get('/activar/{id}/{estado}', [Usuarios::class, 'activar'])->name('usuarios-activar');
     Route::get('/cambiar-password/{id}/{password}', [Usuarios::class, 'cambio_password'])->name('cambiar-password');
+});
+
+
+/* Compras */
+Route::prefix('compras')->middleware('auth')->group(function () {
+    Route::get('/', [Compras::class, 'index'])->name('compras');
+    Route::post('/store', [Compras::class, 'store'])->name('compras-store');
+    /* Route::get('/create', [Compras::class, 'create'])->name('compras-create'); */
+    Route::get('/create/{id_producto}', [Compras::class, 'create'])->name('compras-create');
 });

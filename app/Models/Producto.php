@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Producto extends Model
 {
-    //aseguramos que trabajamos con la tabla categorias
-    protected $table = 'categorias';
+    //aseguramos que trabajamos con la tabla productos
+    protected $table = 'productos';
 
 }
