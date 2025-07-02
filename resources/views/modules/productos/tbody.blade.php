@@ -1,9 +1,21 @@
  @foreach ($items as $item)
      <tr>
-         <td>{{ $item->categoria_nombre }}</td>
-         <td>{{ $item->proveedor_nombre }}</td>
+         <td>{{ $item->nombre_categoria }}</td>
+         <td>{{ $item->nombre_proveedor }}</td>
          <td>{{ $item->nombre }}</td>
-         <td>{{ $item->imagen }}</td>
+         <td>
+             <img src="{{ asset('storage/' . $item->imagen_producto) }}" alt="" width="60px" height="60px">
+
+             @if ($item->imagen_id)
+                 <a href="{{ route('productos.show.image', ['id' => $item->imagen_id]) }}"
+                     class="badge rounded-pill bg-info text-dark">
+                     <i class="fa-solid fa-image"></i> Ver Imagen
+                 </a>
+             @else
+                 <span class="badge rounded-pill bg-secondary">Sin imagen</span>
+             @endif
+         </td>
+
          <td>{{ $item->descripcion }}</td>
          <td>{{ $item->cantidad }}</td>
          <td>{{ $item->precio_venta }}</td>

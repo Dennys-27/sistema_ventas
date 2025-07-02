@@ -22,7 +22,7 @@
                     <div class="card-body p-4">
                         <h5 class="card-title">Agregar nuevo producto</h5>
 
-                        <form action="{{ route('productos-store') }}" method="POST">
+                        <form action="{{ route('productos-store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -58,6 +58,10 @@
                                 <div class="col-md-12 mb-3">
                                     <label for="descripcion" class="form-label">Descripción</label>
                                     <textarea class="form-control" name="descripcion" id="descripcion" rows="3" placeholder="Escribe una descripción..."></textarea>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="imagen" class="form-label">Imagen</label>
+                                    <input type="file" id="imagen" name="imagen" class="form-control">
                                 </div>
                             </div>
 

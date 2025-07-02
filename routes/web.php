@@ -94,6 +94,9 @@ Route::prefix('productos')->middleware('auth')->group(function () {
 
     Route::get('/cambiar/{id}/{estado}', [Productos::class, 'cambiar'])->name('productos-cambiar');
     Route::get('/tbody', [Productos::class, 'tbody'])->name('productos-tbody');
+
+    Route::get('/show-image/{id}', [Productos::class, 'show_image'])->name('productos.show.image');
+    Route::put('/update-image/{id}', [Productos::class, 'update_image'])->name('productos.update.image');
 });
 
 /* Reportes Productos */

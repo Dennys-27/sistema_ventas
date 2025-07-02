@@ -48,7 +48,7 @@
                     <td>{{ $item->nombre_proveedor }}</td>
                     <td>{{ $item->nombre }}</td>
                     <td>
-                      {{-- <img src="{{ asset('storage/' . $item->imagen_producto) }}" alt="" width="60px" height="60px"> --}}
+                      <img src="{{ asset('storage/' . $item->imagen_producto) }}" alt="" width="60px" height="60px">
                     </td>
                     <td>{{ $item->descripcion }}</td>
                     <td class="text-center">{{ $item->cantidad }}</td>
