@@ -28,7 +28,7 @@ Route::post('/logear', [AuthController::class, 'logear'])->name('logear');
 
 
 /* Ventas */
-Route::prefix('ventas')->middleware('auth')->group(function () {
+Route::prefix('ventas')->group(function () {
     Route::get('/nueva-venta', [Ventas::class, 'index'])->name('ventas-nueva');
     Route::get('/agregar-carrito/{id_producto}', [Ventas::class, 'agregar_carrito'])->name('ventas.agregar.carrito');
     Route::get('/borrar-carrito', [Ventas::class, 'borrar_carrito'])->name('ventas.borrar.carrito');
@@ -49,7 +49,7 @@ Route::prefix('detalle')->middleware('auth')->group(function () {
 
 
 /* Categorias */
-Route::prefix('categorias')->middleware('auth')->group(function () {
+Route::prefix('categorias')->middleware('auth','Checkrol:admin')->group(function () {
     Route::get('/', [Categorias::class, 'index'])->name('categorias');
     Route::get('/create', [Categorias::class, 'create'])->name('categorias-create');
     Route::post('/store', [Categorias::class, 'store'])->name('categorias-store');
@@ -61,7 +61,7 @@ Route::prefix('categorias')->middleware('auth')->group(function () {
 
 
 /* Productos */
-Route::prefix('productos')->middleware('auth')->group(function () {
+Route::prefix('productos')->middleware('auth','Checkrol:admin')->group(function () {
     Route::get('/', [Productos::class, 'index'])->name('productos');
     Route::get('/create', [Productos::class, 'create'])->name('productos-create');
     Route::post('/store', [Productos::class, 'store'])->name('productos-store');
@@ -79,13 +79,13 @@ Route::prefix('productos')->middleware('auth')->group(function () {
 });
 
 /* Reportes Productos */
-Route::prefix('reportes_productos')->middleware('auth')->group(function () {
+Route::prefix('reportes_productos')->middleware('auth','Checkrol:admin')->group(function () {
     Route::get('/', [Reportes_productos::class, 'index'])->name('reportes_productos');
     Route::get('/falta-stock', [Reportes_productos::class, 'falta_stock'])->name('reportes_productos.falta_stock');
 });
 
 /* Proveedores */
-Route::prefix('proveedores')->middleware('auth')->group(function () {
+Route::prefix('proveedores')->middleware('auth','Checkrol:admin')->group(function () {
     Route::get('/', [Proveedores::class, 'index'])->name('proveedores');
     Route::get('/edit/{id}', [Proveedores::class, 'edit'])->name('proveedores-edit');
     Route::get('/show/{id}',  [Proveedores::class,  'show'])->name('proveedores-show');
@@ -96,7 +96,7 @@ Route::prefix('proveedores')->middleware('auth')->group(function () {
 });
 
 /* Reportes Usuarios */
-Route::prefix('usuarios')->middleware('auth')->group(function () {
+Route::prefix('usuarios')->middleware('auth','Checkrol:admin')->group(function () {
     Route::get('/', [Usuarios::class, 'index'])->name('usuarios');
     Route::get('/create', [Usuarios::class, 'create'])->name('usuarios-create');
     Route::post('/store', [Usuarios::class, 'store'])->name('usuarios-store');
@@ -109,7 +109,7 @@ Route::prefix('usuarios')->middleware('auth')->group(function () {
 
 
 /* Compras */
-Route::prefix('compras')->middleware('auth')->group(function () {
+Route::prefix('compras')->middleware('auth','Checkrol:admin')->group(function () {
     Route::get('/', [Compras::class, 'index'])->name('compras');
     Route::post('/store', [Compras::class, 'store'])->name('compras-store');
     Route::get('/edit/{id}', [Compras::class, 'edit'])->name('compras-edit');

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        //gates en laravel
+        Gate::define('ver-admin', function (User $user) {
+            return $user->rol === 'admin';
+        });
+
+        Gate::define('ver-ventas', function (User $user) {
+            return in_array($user->rol, ['admin', 'cajero']);
+        });
     }
 }
