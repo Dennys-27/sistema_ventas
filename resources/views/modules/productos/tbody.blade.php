@@ -2,6 +2,7 @@
      <tr>
          <td>{{ $item->nombre_categoria }}</td>
          <td>{{ $item->nombre_proveedor }}</td>
+         <td class="text-center">{{ $item->codigo }}</td>
          <td>{{ $item->nombre }}</td>
          <td>
              <img src="{{ asset('storage/' . $item->imagen_producto) }}" alt="" width="60px" height="60px">

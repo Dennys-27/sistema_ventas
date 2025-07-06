@@ -27,45 +27,24 @@ Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/logear', [AuthController::class, 'logear'])->name('logear');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Ventas */
 Route::prefix('ventas')->middleware('auth')->group(function () {
     Route::get('/nueva-venta', [Ventas::class, 'index'])->name('ventas-nueva');
+    Route::get('/agregar-carrito/{id_producto}', [Ventas::class, 'agregar_carrito'])->name('ventas.agregar.carrito');
+    Route::get('/borrar-carrito', [Ventas::class, 'borrar_carrito'])->name('ventas.borrar.carrito');
+    Route::get('/quitar-carrito/{id_producto}', [Ventas::class, 'quitar_carrito'])->name('ventas.quitar.carrito');
+    Route::get('/carrito/contador', [Ventas::class, 'contador_carrito'])
+        ->name('ventas.carrito.contador');
+    Route::get('/mostrar-carrito',  [Ventas::class, 'mostrar_carrito'])->name('ventas.mostrar.carrito');
+    Route::post('/vender', [Ventas::class, 'vender'])->name('ventas.vender');
 });
 
 /* Detalle Ventas */
 Route::prefix('detalle')->middleware('auth')->group(function () {
     Route::get('/detalle-venta', [DetalleVentas::class, 'index'])->name('detalle-venta');
+    Route::get('/detalle-venta/{id}', [DetalleVentas::class, 'detalle_venta'])->name('detalle-venta.detalle');
+    Route::delete('/revocar/{id_venta}', [DetalleVentas::class, 'revocar'])->name('detalle-revocar');
+    Route::get('/ticket/{id}', [DetalleVentas::class, 'generarTicket'])->name('detalle-venta.ticket');
 });
 
 

@@ -63,7 +63,7 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Desarrollo por <a target="_blank" href="https://facultadautodidacta/">Milena Sistema</a>
+                Desarrollo por <a target="_blank" href="">Tomilboot Sistema</a>
               </div>
 
             </div>
